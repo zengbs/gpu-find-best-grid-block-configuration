@@ -36,6 +36,8 @@ ax01max = ax[0][1].get_ylim()[1]
 ax01min = ax[0][1].get_ylim()[0]
 ax11max = ax[1][1].get_ylim()[1]
 ax11min = ax[1][1].get_ylim()[0]
+print("ax00max=%d, ax10max=%d, ax01max=%d, ax11max=%d" %(ax00max, ax10max, ax01max, ax11max))
+print("ax00min=%d, ax10min=%d, ax01min=%d, ax11min=%d" %(ax00min, ax10min, ax01min, ax11min))
 
 for threadIdx in range(32,1025,32):
    ax[0][0].vlines( threadIdx, ax00min, ax00max, color='red', linestyles='dashed' )
