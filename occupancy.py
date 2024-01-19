@@ -27,6 +27,11 @@ Time      = np.loadtxt( File,  usecols=(2), unpack=True, delimiter=' ' )
 ax[0][0].plot(blockSize, Time, 'o', markersize=0.5, color='black')
 ax[0][1].plot(gridSize,  Time, 'o', markersize=0.5, color='black')
 
+ax[0][1].set_yscale('log')
+ax[1][0].set_yscale('log')
+ax[1][1].set_yscale('log')
+ax[0][0].set_yscale('log')
+
 ax00max = ax[0][0].get_ylim()[1]
 ax00min = ax[0][0].get_ylim()[0]
 ax10max = ax[1][0].get_ylim()[1]
@@ -36,22 +41,19 @@ ax01max = ax[0][1].get_ylim()[1]
 ax01min = ax[0][1].get_ylim()[0]
 ax11max = ax[1][1].get_ylim()[1]
 ax11min = ax[1][1].get_ylim()[0]
-print("ax00max=%d, ax10max=%d, ax01max=%d, ax11max=%d" %(ax00max, ax10max, ax01max, ax11max))
-print("ax00min=%d, ax10min=%d, ax01min=%d, ax11min=%d" %(ax00min, ax10min, ax01min, ax11min))
 
 for threadIdx in range(32,1025,32):
    ax[0][0].vlines( threadIdx, ax00min, ax00max, color='red', linestyles='dashed' )
    ax[1][0].vlines( threadIdx, ax10min, ax10max, color='red', linestyles='dashed' )
 
-for threadIdx in range(72,1025,72):
-   ax[0][1].vlines( threadIdx, ax01min, ax01max, color='red', linestyles='dashed' )
-   ax[1][1].vlines( threadIdx, ax11min, ax11max, color='red', linestyles='dashed' )
+for blockIdx in range(72,1025,72):
+   ax[0][1].vlines( blockIdx, ax01min, ax01max, color='red', linestyles='dashed' )
+   ax[1][1].vlines( blockIdx, ax11min, ax11max, color='red', linestyles='dashed' )
 
-
-ax[0][1].set_yscale('log')
-ax[1][0].set_yscale('log')
-ax[1][1].set_yscale('log')
-ax[0][0].set_yscale('log')
+ax[0][0].set_ylim(ax00min,ax00max)
+ax[0][1].set_ylim(ax01min,ax01max)
+ax[1][0].set_ylim(ax10min,ax10max)
+ax[1][1].set_ylim(ax11min,ax11max)
 
 ax[0][0].set_ylabel("Time (sec)", fontsize=15)
 ax[1][0].set_ylabel("CUDA core occupancy", fontsize=15)
