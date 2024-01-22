@@ -85,27 +85,27 @@ int main()
     cudaMemcpy(d_B, B, bytes, cudaMemcpyHostToDevice);
 
     // Set execution configuration parameters
-    //      thr_per_blk: number of CUDA threads per grid block
-    //      blk_in_grid: number of blocks in grid
-    int thr_per_blk = 1024;
-    int blk_in_grid = 1;
+    //      blockSize: number of CUDA threads per grid block
+    //      gridSize: number of blocks in grid
+    int blockSize = 1024;
+    int gridSize = 1;
 
     // Warm up
     Start();
-    kernel<<< blk_in_grid, thr_per_blk >>>(d_A, d_B, d_C, N);
+    kernel<<< gridSize, blockSize >>>(d_A, d_B, d_C, N);
     Stop();
 
     printf("# gridSize       blockSize        Time (sec)");
 
     // Launch kernel
-    for ( blk_in_grid = 1; blk_in_grid<=1024; blk_in_grid++ ){
-       for ( thr_per_blk = 1; thr_per_blk<=1024; thr_per_blk++ ){
+    for ( gridSize = 1; gridSize<=1024; gridSize++ ){
+       for ( blockSize = 1; blockSize<=1024; blockSize++ ){
 
           Start();
-          kernel<<< blk_in_grid, thr_per_blk >>>(d_A, d_B, d_C, N);
+          kernel<<< gridSize, blockSize >>>(d_A, d_B, d_C, N);
           cudaDeviceSynchronize();
           Stop();
-          printf("%d, %d, %e\n", blk_in_grid, thr_per_blk, GetValue());
+          printf("%d, %d, %e\n", gridSize, blockSize, GetValue());
 
        }
        printf("\n");
