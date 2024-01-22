@@ -35,23 +35,23 @@ for ( gridSize = 1; gridSize<=1024; gridSize++ ){
 
 The figure below illustrates the timing results derived from the benchmark script on NVIDIA A10, represented as a function of both grid size and block size. At first glance, the figure shows that the time spent on the kernel execution increases as either the block size or grid size decreases.
 
-![image](https://hackmd.io/_uploads/HygxYnQKp.png =70%x)
+![image](https://github.com/zengbs/gpu-find-best-grid-block-configuration/blob/main/fig__3d.png?raw=true)
 
 To conduct detailed analysis, we plot the profiles in the top row panels, the right panel shows how the kernel's execution time varies with grid size at a fixed block size, while the left panel shows the variation with block size at a fixed grid size. These two profiles are based on the time as a function of both grid and block size showing the above figure.
 
 
-![fig__occupancy](https://hackmd.io/_uploads/Sk73r-ntp.png)
+![image](https://github.com/zengbs/gpu-find-best-grid-block-configuration/blob/main/fig__occupancy.png?raw=true)
 
 
-$\begin{equation}
+$$\begin{equation}
 \displaystyle
 \text{Warp occupancy}=\frac{\text{Number of threads per block}}{\text{ceiling(Number of threads per block, warp size)}}
-\end{equation}$
+\end{equation}$$
 
 
 
 
-$\begin{equation}
+$$\begin{equation}
 \displaystyle
 \text{SM occupancy}=\frac{\text{Number of blocks per grid}}{\text{ceiling(Number of blocks per grid, Number of SMs per GPU)}}
-\end{equation}$
+\end{equation}$$
