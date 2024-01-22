@@ -72,8 +72,8 @@ ax[0][1].tick_params(axis='both', direction='in', which='minor', labelsize=12, l
 ax[1][0].tick_params(axis='both', direction='in', which='minor', labelsize=12, length=3)
 ax[1][1].tick_params(axis='both', direction='in', which='minor', labelsize=12, length=3)
 
-ax[1][0].set_xticks(np.arange(0, max(x)+1, 32, dtype=np.short), dtype=np.short)
-ax[1][1].set_xticks(np.arange(0, max(x)+1, 72, dtype=np.short), dtype=np.short)
+ax[1][0].set_xticks(np.arange(0, max(x)+1, 32, dtype=np.short))#, dtype=np.short)
+ax[1][1].set_xticks(np.arange(0, max(x)+1, 72, dtype=np.short))#, dtype=np.short)
 
 ax[1][0].set_xticklabels(ax[1][0].get_xticks(), rotation = 90)
 ax[1][1].set_xticklabels(ax[1][1].get_xticks(), rotation = 90)
@@ -87,4 +87,4 @@ ax[1][0].set_xlim(1,1024)
 ax[1][1].set_xlim(1,1024)
 
 #plt.show()
-plt.savefig("throughput_vs_block_grid_size.png", dpi=96, format='png', bbox_inches='tight')
+plt.savefig("fig__occupancy.png", dpi=96, format='png', bbox_inches='tight')
