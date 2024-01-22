@@ -7,12 +7,12 @@ from matplotlib import cm
 def log_tick_formatter(val, pos=None):
     return f"$10^{{{int(val)}}}$"  # remove int() if you don't use MaxNLocator
 
-File = "log"
+File = "throughput_vs_block_grid_size.dat"
 
 
-gridSize  = np.loadtxt( File,  usecols=(0), unpack=True, delimiter=',' )
-blockSize = np.loadtxt( File,  usecols=(1), unpack=True, delimiter=',' )
-Time      = np.loadtxt( File,  usecols=(2), unpack=True, delimiter=',' )
+gridSize  = np.loadtxt( File,  usecols=(0), unpack=True, delimiter=' ' )
+blockSize = np.loadtxt( File,  usecols=(1), unpack=True, delimiter=' ' )
+Time      = np.loadtxt( File,  usecols=(2), unpack=True, delimiter=' ' )
 
 
 fig = plt.figure(figsize=(12, 12), dpi=160)
@@ -28,5 +28,5 @@ ax.set_xlabel("Number of blocks")
 ax.set_ylabel("Number of threads per block")
 ax.set_zlabel("Time (sec)")
 
-plt.show()
-#plt.savefig("test.png", dpi=96, format='png', bbox_inches='tight')
+#plt.show()
+plt.savefig("fig__3d.png", dpi=96, format='png', bbox_inches='tight')
