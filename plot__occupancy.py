@@ -2,10 +2,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
 
+def Ceiling(x, unitSize):
+   return x-(x%unitSize) + np.where( (x%unitSize)>0, 1, 0 )*unitSize
 
-def occupancy( unitSize, x ):
-   y = x-(x%unitSize) + np.where( (x%unitSize)>0, 1, 0 )*unitSize
-   return x/y
+
+def Occupancy( x, unitSize ):
+   return x/Ceiling(x, unitSize)
 
 fig, ax = plt.subplots(2, 2, figsize=(20, 10))
 plt.subplots_adjust(wspace=0.15, hspace=0.02)
@@ -14,8 +16,8 @@ xmin = 1
 xmax = 1024
 
 x = np.linspace(xmin, xmax, num=int(xmax-xmin)+1)
-ax[1][0].plot(x, occupancy(32, x), 'o', markersize=0.5, color='black')
-ax[1][1].plot(x, occupancy(72, x), 'o', markersize=0.5, color='black')
+ax[1][0].plot(x, Occupancy(x, 32), 'o', markersize=0.5, color='black')
+ax[1][1].plot(x, Occupancy(x, 72), 'o', markersize=0.5, color='black')
 
 
 File = "throughput_vs_block_grid_size.dat"

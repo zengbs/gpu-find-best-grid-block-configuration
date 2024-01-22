@@ -9,7 +9,7 @@ def Ceiling(x, unitSize):
 numPoints = 129*2
 unitSize = 32  # Example unit size
 
-x_values = np.linspace(0, numPoints-1, numPoints, endpoint=True, dtype=np.int16)
+x_values = np.linspace(0, numPoints-2, numPoints-1, endpoint=True, dtype=np.int16)
 
 # Calculate y values using the function
 y_values = Ceiling(x_values, unitSize)
